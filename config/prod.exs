@@ -67,5 +67,4 @@ config :logger, level: :info
 config :rocket_nanny, HelloPhoenix.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
-  pool_size: 20,
-  ssl: true
+  pool_size: 20
