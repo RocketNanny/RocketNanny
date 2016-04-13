@@ -9,11 +9,8 @@ config :rocket_nanny, RocketNanny.Endpoint,
 # Print only warnings and errors during test
 config :logger, level: :warn
 
-# Configure your database
-config :rocket_nanny, RocketNanny.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "rocket_nanny_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+# import the config/test.secret.exs
+# which is versioned separately so
+# people can use their own database
+# configurations.
+import_config "test.secret.exs"

@@ -1,0 +1,10 @@
+use Mix.Config
+
+# Configure your database
+config :rocket_nanny, RocketNanny.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  database: "rocket_nanny_dev",
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  pool_size: 10
