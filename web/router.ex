@@ -10,8 +10,8 @@ defmodule RocketNanny.Router do
   end
 
   scope "/", RocketNanny do
-    pipe_through :browser # Use the default browser stack
+    pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PageController, :load_page
   end
 end
