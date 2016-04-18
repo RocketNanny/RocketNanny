@@ -1,7 +1,12 @@
+var SignupForm = require("../forms/signup-form");
+
 var SignupPage = React.createClass({
   render() {
     return(
-      <div>Signup placeholder</div>
+      <div>
+        Signup placeholder
+        <SignupForm/>
+      </div>
     );
   }
 });
