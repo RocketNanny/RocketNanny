@@ -11,6 +11,7 @@
 //
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
+
 import "phoenix_html"
 
 // Import local files
@@ -19,3 +20,19 @@ import "phoenix_html"
 // paths "./socket" or full ones "web/static/js/socket".
 
 // import socket from "./socket"
+
+window.React = require("react");
+window.ReactDOM = require("react-dom");
+
+var Router = require("./react/router");
+
+// Split location into `/` separated parts, then render `Application` with it
+function handleNewHash() {
+  var location = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
+  var router = <Router location={location} />;
+  ReactDOM.render(router, document.getElementById('react-component'));
+}
+
+// Handle the initial route and browser navigation events
+handleNewHash()
+window.addEventListener('hashchange', handleNewHash, false);
