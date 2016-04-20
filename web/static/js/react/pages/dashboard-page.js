@@ -1,7 +1,12 @@
+var NavBar = require("../nav-bar");
+
 var DashboardPage = React.createClass({
   render() {
     return(
-      <div>Dashboard placeholder</div>
+      <div>
+        <NavBar isLoggedIn={false}/>
+        Dashboard placeholder
+      </div>
     );
   }
 });
