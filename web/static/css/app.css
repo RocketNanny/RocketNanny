@@ -30,4 +30,8 @@ li a:hover {
 .active {
     background-color: #0000FF;
 }
+
+li {
+    border-right: 2px solid #bbb;
+}
 li:last-child{float: right;}
