@@ -11,7 +11,7 @@ var HomePage = React.createClass({
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn } onLogout={ this.props.onLogout }/>
-        <SignupForm/>
+        <SignupForm onSignup={ this.props.onSignup }/>
       </div>
     );
   }

@@ -5,6 +5,8 @@ var SignupForm = React.createClass({
 
   getInitialState() {
     return {
+      firstName: null,
+      lastName: null,
       email: null,
       password: null,
       confirmPassword: null,
@@ -18,7 +20,7 @@ var SignupForm = React.createClass({
     $.ajax({
       method: "POST",
       url: window.API_URL + "/signup",
-      data: {email: this.state.email, password: this.state.password}
+      data: {user: {first_name: this.state.firstName, last_name: this.state.lastName, email: this.state.email, password: this.state.password}}
     }).done(function(response) {
       if(response["status"] == "success") {
         self.props.onSignup(response);
@@ -30,7 +32,7 @@ var SignupForm = React.createClass({
     return(
       <div onClick={ this.signup }>
         Form placeholder
-        <div>{this.state.email} {this.state.password}</div>
+        <div>{this.state.firstName} {this.state.lastName} {this.state.email} {this.state.password}</div>
       </div>
     );
   }
