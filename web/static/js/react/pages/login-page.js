@@ -1,14 +1,22 @@
+var NavBar = require("../nav-bar");
+var LoginForm = require("../forms/login-form");
+
 var LoginPage = React.createClass({
+  propTypes: {
+    isLoggedIn: React.PropTypes.bool.isRequired,
+    onLogin: React.PropTypes.func.isRequired,
+    onLogout: React.PropTypes.func.isRequired
+  },
+
+  handleLogin(loginResponse) {
+    this.props.onLogin(loginResponse);
+  },
+
   render() {
     return(
       <div>
-      Login placeholder
-      <ul>
-        <li><a href="#"><img src="/images/favicon.png" alt="RocketNanny" height="32"/></a></li>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#signup">Signup</a></li>
-        <li><a><i className="fa fa-bars fa-2x" aria-hidden="true"></i></a></li>
-      </ul>
+        <NavBar isLoggedIn={ this.props.isLoggedIn } onLogout={ this.props.onLogout }/>
+        <LoginForm onLogin={ this.handleLogin }/>
       </div>
     );
   }

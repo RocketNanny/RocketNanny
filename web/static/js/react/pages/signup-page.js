@@ -1,17 +1,18 @@
+var NavBar = require("../nav-bar");
 var SignupForm = require("../forms/signup-form");
 
 var SignupPage = React.createClass({
+  propTypes: {
+    isLoggedIn: React.PropTypes.bool.isRequired,
+    onSignup: React.PropTypes.func.isRequired,
+    onLogout: React.PropTypes.func.isRequired
+  },
+
   render() {
     return(
       <div>
-      <ul>
-        <li><a href="#"><img src="/images/favicon.png" alt="RocketNanny" height="32"/></a></li>
-        <li><a href="#login">Login</a></li>
-        <li><a href="#signup">Signup</a></li>
-        <li><a><i className="fa fa-bars fa-2x" aria-hidden="true"></i></a></li>
-    </ul>
-        Signup placeholder
-        <SignupForm/>
+        <NavBar isLoggedIn={ this.props.isLoggedIn } onSignup={ this.props.onSignup } onLogout={ this.props.onLogout }/>
+        <SignupForm onSignup={ this.props.onSignup }/>
       </div>
     );
   }
