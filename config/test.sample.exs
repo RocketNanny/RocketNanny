@@ -8,3 +8,7 @@ config :rocket_nanny, RocketNanny.Repo,
   password: "postgres",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :api, Api.Endpoint,
+  socket_url: "ws://localhost:4001",
+  api_url: "http://localhost:4001"
