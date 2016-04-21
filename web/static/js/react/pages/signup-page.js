@@ -12,7 +12,7 @@ var SignupPage = React.createClass({
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn } onSignup={ this.props.onSignup } onLogout={ this.props.onLogout }/>
-        <SignupForm/>
+        <SignupForm onSignup={ this.props.onSignup }/>
       </div>
     );
   }
