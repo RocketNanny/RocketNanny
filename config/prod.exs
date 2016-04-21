@@ -15,7 +15,9 @@ config :rocket_nanny, RocketNanny.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [host: "rocketnanny.herokuapp.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json",
-  secret_key_base: System.get_env("SECRET_KEY_BASE")
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  socket_url: System.get_env("SOCKET_URL"),
+  api_url: System.get_env("API_URL")
 
 # Do not print debug messages in production
 config :logger, level: :info
