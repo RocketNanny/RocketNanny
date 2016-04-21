@@ -7,6 +7,6 @@ config :rocket_nanny, RocketNanny.Repo,
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
 
-config :api, Api.Endpoint,
+config :rocket_nanny, RocketNanny.Endpoint,
   socket_url: "ws://127.0.0.1:4001",
   api_url: "http://127.0.0.1:4001"

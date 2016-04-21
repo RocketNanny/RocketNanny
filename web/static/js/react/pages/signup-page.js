@@ -11,7 +11,7 @@ var SignupPage = React.createClass({
   render() {
     return(
       <div>
-        <NavBar isLoggedIn={ this.props.isLoggedIn } onLogout={ this.props.onLogout }/>
+        <NavBar isLoggedIn={ this.props.isLoggedIn } onSignup={ this.props.onSignup } onLogout={ this.props.onLogout }/>
         <SignupForm/>
       </div>
     );
