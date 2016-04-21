@@ -17,8 +17,8 @@
   <body>
     <%= render @view_module, @view_template, assigns %>
 
-    <script>window.API_URL = "<%= Application.get_env(:api, RocketNanny.Endpoint)[:api_url] %>";</script>
-    <script>window.SOCKET_URL = "<%= Application.get_env(:api, RocketNanny.Endpoint)[:socket_url] %>";</script>
+    <script>window.API_URL = "<%= Application.get_env(:rocket_nanny, RocketNanny.Endpoint)[:api_url] %>";</script>
+    <script>window.SOCKET_URL = "<%= Application.get_env(:rocket_nanny, RocketNanny.Endpoint)[:socket_url] %>";</script>
     <script src="<%= static_path(@conn, "/js/vendor.js") %>"></script>
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
 
