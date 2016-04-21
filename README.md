@@ -14,12 +14,28 @@ To start your Phoenix app:
 
 Now you can visit [`localhost:4002`](http://localhost:4002) from your browser.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+## Architecture Overview
 
-## Learn more
+### RocketNanny
 
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: http://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+This repository represents the front-end web app for the rocketnanny.com site.
+
+It is compiled by [`Brunch`](http://brunch.io/).
+
+The main front-end framework is a [`React`](https://facebook.github.io/react/) javascript.
+
+To lookup all javascript dependencies open the [`package.json file`](https://github.com/RocketNanny/RocketNanny/blob/master/package.json).
+
+RocketNanny uses [`lodash`](https://lodash.com/docs) for javascript helper methods and [`SASS`](http://sass-lang.com/) for css helper methods.
+
+### RocketNanny API
+
+The front-end of this site relies on the rocketnanny api to do all the heavy lifting. It is where the database and backend operations occur.
+
+RocketNanny communicates with the API in 2 ways. Login and Signup are traditional Rest based POST actions. All other calls occur over a secure websocket. Each user account has it's own channel.
+
+[`See RocketNanny API`](https://github.com/RocketNanny/API/blob/master/README.md) for more information on it's architecture.
+
+### RocketNanny Mobile Apps
+
+The RocketNanny site has a mobile version that is currently under construction. These mobile apps would be native iOS and Android apps that utilize their internal contact list and SMS tools.
