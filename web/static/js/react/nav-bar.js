@@ -53,7 +53,7 @@ var NavBar = React.createClass({
          { this.renderDashboardLink() }
          <li>
            <a onClick={ this.openMenu }>
-             <i className="fa fa-bars fa-2x" aria-hidden="true"/>
+             <i className="fa fa-bars fa-2x"/>
            </a>
          </li>
        </ul>

@@ -6,7 +6,7 @@ var SignupPage = React.createClass({
     return(
       <div>
       <NavBar isLoggedIn={false}/>
-        Signup placeholder
+        
         <SignupForm/>
       </div>
     );
