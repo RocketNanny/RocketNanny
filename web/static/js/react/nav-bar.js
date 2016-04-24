@@ -36,7 +36,7 @@ var NavBar = React.createClass({
       return(
         <ul>
           { this.renderLogo() }
-          <li><a href="javascript:;" onClick={ this.props.onLogout }>Logout</a></li>
+          <li><a href="javascript:;" onClick={ this.handleLogout }>Logout</a></li>
           <li><a href="/#/app">Dashboard</a></li>
           { this.renderMenuBtn() }
         </ul>

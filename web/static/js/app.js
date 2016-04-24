@@ -11,6 +11,7 @@ var Router = require("./react/router");
 window.Store = {
   token: sessionStorage.getItem("token"),
   user_id: sessionStorage.getItem("user_id"),
+  account_id: sessionStorage.getItem("account_id"),
   hashLocation: null,
   socket: null,
   channel: null,
@@ -18,8 +19,10 @@ window.Store = {
   setSession(loginResponse) {
     sessionStorage.setItem("token", loginResponse.token);
     sessionStorage.setItem("user_id", loginResponse.user_id);
+    sessionStorage.setItem("account_id", loginResponse.account_id);
     window.Store.token = loginResponse.token;
     window.Store.user_id = loginResponse.user_id;
+    window.Store.account_id = loginResponse.account_id;
     window.Store.reRender();
   },
 
@@ -28,15 +31,16 @@ window.Store = {
 
     window.Store.token = null;
     window.Store.user_id = null;
+    window.Store.account_id = null;
     window.Store.reRender();
   },
 
   connectSocket() {
-    if(!!window.Store.token && !!window.Store.user_id && !window.Store.socket) {
-      window.Store.socket = new Socket("/socket", {params: {token: window.Store.token}})
+    if(!!window.Store.token && !!window.Store.account_id && !!window.Store.user_id && !window.Store.socket) {
+      window.Store.socket = new Socket(window.SOCKET_URL + "/account_socket", {params: {token: window.Store.token}})
       window.Store.socket.connect()
 
-      window.Store.channel = window.Store.socket.channel("users:" + window.Store.user_id, {token: window.Store.token})
+      window.Store.channel = window.Store.socket.channel("account:" + window.Store.account_id, {token: window.Store.token})
       window.Store.channel.join()
         .receive("ok", resp => { console.log("Joined successfully", resp) })
         .receive("error", resp => { console.log("Unable to join", resp) })
@@ -51,7 +55,7 @@ window.Store = {
 
   reRender() {
     window.Store.connectSocket();
-    var router = <Router location={window.Store.hashLocation} user_id={window.Store.user_id}/>;
+    var router = <Router location={window.Store.hashLocation} account_id={window.Store.account_id} user_id={window.Store.user_id}/>;
     ReactDOM.render(router, document.getElementById('react-component'));
   }
 };

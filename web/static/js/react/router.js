@@ -5,16 +5,14 @@ var SignupPage = require("./pages/signup-page");
 var NotFoundPage = require("./pages/not-found-page");
 
 var Router = React.createClass({
-  getInitialState() {
-    return {
-      location: React.PropTypes.string.isRequired,
-      account_id: null,
-      user_id: null
-    };
+  PropTypes: {
+    location: React.PropTypes.string.isRequired,
+    account_id: React.PropTypes.string,
+    user_id: React.PropTypes.string
   },
 
   isLoggedIn() {
-    return !!this.state.account_id && !!this.state.user_id;
+    return !!this.props.account_id && !!this.props.user_id;
   },
 
   render() {

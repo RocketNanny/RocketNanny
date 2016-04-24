@@ -2,10 +2,10 @@ var Dispatcher = {
   login(email, password) {
     return $.ajax({
       method: "POST",
-      url: "/api/login",
+      url: window.API_URL + "/login",
       data: {email: email, password: password}
     }).done(function(response) {
-      if(response.status == "success") {
+      if(response["status"] == "success") {
         window.Store.setSession(response);
       }
     });
