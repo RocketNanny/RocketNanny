@@ -18,7 +18,9 @@ defmodule RocketNanny do
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: RocketNanny.Supervisor]
-    Supervisor.start_link(children, opts)
+    res = Supervisor.start_link(children, opts)
+    Ecto.Migrator.run(RocketNanny.Repo, Path.join(["#{:code.priv_dir(:rocket_nanny)}", "repo", "migrations"]), :up, all: true)
+    res
   end
 
   # Tell Phoenix to update the endpoint configuration
