@@ -10,7 +10,11 @@ var SignupPage = React.createClass({
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn }/>
-        <SignupForm/>
+        <div className="container">
+          <main role="main">
+            <SignupForm/>
+          </main>
+        </div>
       </div>
     );
   }

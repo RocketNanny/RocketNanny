@@ -10,7 +10,11 @@ var LoginPage = React.createClass({
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn }/>
-        <LoginForm/>
+        <div className="container">
+          <main role="main">
+            <LoginForm/>
+          </main>
+        </div>
       </div>
     );
   }

@@ -6,11 +6,21 @@ var HomePage = React.createClass({
     isLoggedIn: React.PropTypes.bool.isRequired
   },
 
+  renderSignupForm() {
+    if(!this.props.isLoggedIn) {
+      return(<SignupForm/>);
+    }
+  },
+
   render() {
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn }/>
-        <SignupForm/>
+        <div className="container">
+          <main role="main">
+            { this.renderSignupForm() }
+          </main>
+        </div>
       </div>
     );
   }

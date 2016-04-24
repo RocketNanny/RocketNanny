@@ -9,7 +9,11 @@ var DashboardPage = React.createClass({
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn }/>
-        Dashboard placeholder
+        <div className="container">
+          <main role="main">
+            Dashboard placeholder
+          </main>
+        </div>
       </div>
     );
   }

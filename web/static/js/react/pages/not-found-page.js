@@ -9,7 +9,11 @@ var NotFoundPage = React.createClass({
     return(
       <div>
         <NavBar isLoggedIn={ this.props.isLoggedIn }/>
-        <h1>404- Page Not Found</h1>
+        <div className="container">
+          <main role="main">
+            <h1>404- Page Not Found</h1>
+          </main>
+        </div>
       </div>
     );
   }
