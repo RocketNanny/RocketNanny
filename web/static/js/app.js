@@ -1,38 +1,61 @@
-// Brunch automatically concatenates all files in your
-// watched paths. Those paths can be configured at
-// config.paths.watched in "brunch-config.js".
-//
-// However, those files will only be executed if
-// explicitly imported. The only exception are files
-// in vendor, which are never wrapped in imports and
-// therefore are always executed.
-
-// Import dependencies
-//
-// If you no longer want to use a dependency, remember
-// to also remove its path from "config.paths.watched".
-
 import "phoenix_html"
 
-// Import local files
-//
-// Local files can be imported directly using relative
-// paths "./socket" or full ones "web/static/js/socket".
-
-// import socket from "./socket"
+import {Socket} from "phoenix"
 
 window.React = require("react");
 window.ReactDOM = require("react-dom");
+window.Dispatcher = require("./dispatcher");
 
 var Router = require("./react/router");
 
-// Split location into `/` separated parts, then render `Application` with it
-function handleNewHash() {
-  var location = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
-  var router = <Router location={location} />;
-  ReactDOM.render(router, document.getElementById('react-component'));
-}
+window.Store = {
+  token: sessionStorage.getItem("token"),
+  user_id: sessionStorage.getItem("user_id"),
+  hashLocation: null,
+  socket: null,
+  channel: null,
+
+  setSession(loginResponse) {
+    sessionStorage.setItem("token", loginResponse.token);
+    sessionStorage.setItem("user_id", loginResponse.user_id);
+    window.Store.token = loginResponse.token;
+    window.Store.user_id = loginResponse.user_id;
+    window.Store.reRender();
+  },
+
+  clearSession() {
+    sessionStorage.clear();
+
+    window.Store.token = null;
+    window.Store.user_id = null;
+    window.Store.reRender();
+  },
+
+  connectSocket() {
+    if(!!window.Store.token && !!window.Store.user_id && !window.Store.socket) {
+      window.Store.socket = new Socket("/socket", {params: {token: window.Store.token}})
+      window.Store.socket.connect()
+
+      window.Store.channel = window.Store.socket.channel("users:" + window.Store.user_id, {token: window.Store.token})
+      window.Store.channel.join()
+        .receive("ok", resp => { console.log("Joined successfully", resp) })
+        .receive("error", resp => { console.log("Unable to join", resp) })
+    }
+  },
+
+  // Split location into `/` separated parts, then render `Application` with it
+  handleNewHash() {
+    window.Store.hashLocation = window.location.hash.replace(/^#\/?|\/$/g, '').split('/');
+    window.Store.reRender();
+  },
+
+  reRender() {
+    window.Store.connectSocket();
+    var router = <Router location={window.Store.hashLocation} user_id={window.Store.user_id}/>;
+    ReactDOM.render(router, document.getElementById('react-component'));
+  }
+};
 
 // Handle the initial route and browser navigation events
-handleNewHash()
-window.addEventListener('hashchange', handleNewHash, false);
+window.Store.handleNewHash();
+window.addEventListener('hashchange', window.Store.handleNewHash, false);

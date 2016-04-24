@@ -2,14 +2,13 @@ var NavBar = require("../nav-bar");
 
 var DashboardPage = React.createClass({
   propTypes: {
-    isLoggedIn: React.PropTypes.bool.isRequired,
-    onLogout: React.PropTypes.func.isRequired
+    isLoggedIn: React.PropTypes.bool.isRequired
   },
 
   render() {
     return(
       <div>
-        <NavBar isLoggedIn={ this.props.isLoggedIn } onLogout={ this.props.onLogout }/>
+        <NavBar isLoggedIn={ this.props.isLoggedIn }/>
         Dashboard placeholder
       </div>
     );

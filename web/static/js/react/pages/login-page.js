@@ -3,20 +3,14 @@ var LoginForm = require("../forms/login-form");
 
 var LoginPage = React.createClass({
   propTypes: {
-    isLoggedIn: React.PropTypes.bool.isRequired,
-    onLogin: React.PropTypes.func.isRequired,
-    onLogout: React.PropTypes.func.isRequired
-  },
-
-  handleLogin(loginResponse) {
-    this.props.onLogin(loginResponse);
+    isLoggedIn: React.PropTypes.bool.isRequired
   },
 
   render() {
     return(
       <div>
-        <NavBar isLoggedIn={ this.props.isLoggedIn } onLogout={ this.props.onLogout }/>
-        <LoginForm onLogin={ this.handleLogin }/>
+        <NavBar isLoggedIn={ this.props.isLoggedIn }/>
+        <LoginForm/>
       </div>
     );
   }
