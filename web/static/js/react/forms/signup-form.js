@@ -14,7 +14,8 @@ var SignupForm = React.createClass({
     };
   },
 
-  signup() {
+  signup(e) {
+    e.preventDefault();
     var self = this;
 
     $.ajax({
@@ -33,7 +34,7 @@ var SignupForm = React.createClass({
     return(
       <div>
         <h1>Signup Form</h1>
-        <form>
+        <form onSubmit={ this.signup }>
           <fieldset className="form-group">
             <label htmlFor="formGroupInput">First Name  </label>
             <input type="text" className="form-control" id="formGroupInput" placeholder="First Name"/>
