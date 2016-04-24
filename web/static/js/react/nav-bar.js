@@ -1,72 +1,75 @@
 var NavBar = React.createClass({
   propTypes: {
-    isLoggedIn: React.PropTypes.bool.isRequired,
-    onLogout: React.PropTypes.func.isRequired
+  },
+
+  getInitialState() {
+    return {
+      isLoggedIn: false
+    };
+  },
+
+  componentDidMount() {
+    window.AuthStore.subscribe(this.receiveState);
+  },
+
+  componentWillUnmount() {
+    window.AuthStore.unsubscribe(this.receiveState);
+  },
+
+  receiveState(isLoggedIn, userID, accountID) {
+    this.setState({
+      isLoggedIn: isLoggedIn
+    });
   },
 
   openMenu() {
     console.log("opening menu");
   },
 
-  renderDashboardLink() {
-    if(this.props.isLoggedIn) {
-      return(
-        <li>
-          <a href="/#/app">Dashboard</a>
-        </li>
-      );
-    }
+  handleLogout() {
+    window.Dispatcher.logout();
   },
 
-  renderLoginLink() {
-    if(!this.props.isLoggedIn) {
-      return(
-        <li>
-          <a href="/#/login">Login</a>
-        </li>
-      );
-    }
+  renderLogo() {
+    return(
+      <li>
+        <a href="/#">
+          <img src="/images/favicon.png" alt="RocketNanny" height="32"/>
+        </a>
+      </li>
+    );
   },
 
-  renderLogoutLink() {
-    if(this.props.isLoggedIn) {
-      return(
-        <li>
-          <a href="javascript:;" onClick={ this.props.onLogout }>Logout</a>
-        </li>
-      );
-    }
-  },
-
-  renderSignupLink() {
-    if(!this.props.isLoggedIn) {
-      return(
-        <li>
-          <a href="/#/signup">Signup</a>
-        </li>
-      );
-    }
+  renderMenuBtn() {
+    return(
+      <li>
+        <a onClick={ this.openMenu }>
+          <i className="fa fa-bars fa-2x"/>
+        </a>
+      </li>
+    );
   },
 
   render() {
-    return(
-      <ul>
-        <li>
-          <a href="/#">
-            <img src="/images/favicon.png" alt="RocketNanny" height="32"/>
-          </a>
-        </li>
-        { this.renderLoginLink() }
-        { this.renderSignupLink() }
-        { this.renderDashboardLink() }
-        { this.renderLogoutLink() }
-        <li>
-          <a onClick={ this.openMenu }>
-            <i className="fa fa-bars fa-2x"/>
-          </a>
-        </li>
-      </ul>
-    );
+    if(this.state.isLoggedIn) {
+      return(
+        <ul>
+          { this.renderLogo() }
+          <li><a href="javascript:;" onClick={ this.handleLogout }>Logout</a></li>
+          <li><a href="/#/app">Dashboard</a></li>
+          { this.renderMenuBtn() }
+        </ul>
+      );
+    } else {
+      return(
+        <ul>
+          { this.renderLogo() }
+          <li><a href="/#/signup">Signup</a></li>
+          <li><a href="/#/login">Login</a></li>
+          { this.renderMenuBtn() }
+        </ul>
+      );
+    }
   }
 });
 
