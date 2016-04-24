@@ -52,7 +52,7 @@ var NavBar = React.createClass({
     return(
       <ul>
         <li>
-          <a href="/#/">
+          <a href="/#">
             <img src="/images/favicon.png" alt="RocketNanny" height="32"/>
           </a>
         </li>
@@ -62,7 +62,7 @@ var NavBar = React.createClass({
         { this.renderLogoutLink() }
         <li>
           <a onClick={ this.openMenu }>
-            <i className="fa fa-bars fa-2x" aria-hidden="true"/>
+            <i className="fa fa-bars fa-2x"/>
           </a>
         </li>
       </ul>
