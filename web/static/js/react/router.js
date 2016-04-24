@@ -6,23 +6,38 @@ var NotFoundPage = require("./pages/not-found-page");
 
 var Router = React.createClass({
   PropTypes: {
-    location: React.PropTypes.string.isRequired,
-    account_id: React.PropTypes.string,
-    user_id: React.PropTypes.string
+    location: React.PropTypes.string.isRequired
   },
 
-  isLoggedIn() {
-    return !!this.props.account_id && !!this.props.user_id;
+  getInitialState() {
+    return {
+      isLoggedIn: false
+    };
+  },
+
+  componentDidMount() {
+    window.AuthStore.subscribe(this.receiveState);
+  },
+
+  componentWillUnmount() {
+    window.AuthStore.unsubscribe(this.receiveState);
+  },
+
+  receiveState(isLoggedIn, userID, accountID) {
+    this.setState({
+      isLoggedIn: isLoggedIn
+    });
   },
 
   render() {
-    var isLoggedIn = this.isLoggedIn();
+    var isLoggedIn = this.state.isLoggedIn;
+
     switch (this.props.location[0])  {
     case '':
-      return(<HomePage isLoggedIn={ isLoggedIn }/>);
+      return(<HomePage/>);
     case "app":
       if(isLoggedIn) {
-        return(<DashboardPage isLoggedIn={ isLoggedIn }/>);
+        return(<DashboardPage/>);
       } else {
         window.location = "/#/login";
       }
@@ -30,16 +45,16 @@ var Router = React.createClass({
       if(isLoggedIn) {
         window.location = "/#/app";
       } else {
-        return(<LoginPage isLoggedIn={ isLoggedIn }/>);
+        return(<LoginPage/>);
       }
     case "signup":
       if(isLoggedIn) {
         window.location = "/#/app";
       } else {
-        return(<SignupPage isLoggedIn={ isLoggedIn }/>);
+        return(<SignupPage/>);
       }
     default:
-      return(<NotFoundPage isLoggedIn={ isLoggedIn }/>);
+      return(<NotFoundPage/>);
     }
   }
 });

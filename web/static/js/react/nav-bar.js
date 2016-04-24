@@ -1,6 +1,25 @@
 var NavBar = React.createClass({
   propTypes: {
-    isLoggedIn: React.PropTypes.bool.isRequired
+  },
+
+  getInitialState() {
+    return {
+      isLoggedIn: false
+    };
+  },
+
+  componentDidMount() {
+    window.AuthStore.subscribe(this.receiveState);
+  },
+
+  componentWillUnmount() {
+    window.AuthStore.unsubscribe(this.receiveState);
+  },
+
+  receiveState(isLoggedIn, userID, accountID) {
+    this.setState({
+      isLoggedIn: isLoggedIn
+    });
   },
 
   openMenu() {
@@ -32,7 +51,7 @@ var NavBar = React.createClass({
   },
 
   render() {
-    if(this.props.isLoggedIn) {
+    if(this.state.isLoggedIn) {
       return(
         <ul>
           { this.renderLogo() }

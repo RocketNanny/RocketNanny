@@ -3,11 +3,30 @@ var SignupForm = require("../forms/signup-form");
 
 var HomePage = React.createClass({
   propTypes: {
-    isLoggedIn: React.PropTypes.bool.isRequired
+  },
+
+  getInitialState() {
+    return {
+      isLoggedIn: false
+    };
+  },
+
+  componentDidMount() {
+    window.AuthStore.subscribe(this.receiveState);
+  },
+
+  componentWillUnmount() {
+    window.AuthStore.unsubscribe(this.receiveState);
+  },
+
+  receiveState(isLoggedIn, userID, accountID) {
+    this.setState({
+      isLoggedIn: isLoggedIn
+    });
   },
 
   renderSignupForm() {
-    if(!this.props.isLoggedIn) {
+    if(!this.state.isLoggedIn) {
       return(<SignupForm/>);
     }
   },
@@ -15,7 +34,7 @@ var HomePage = React.createClass({
   render() {
     return(
       <div>
-        <NavBar isLoggedIn={ this.props.isLoggedIn }/>
+        <NavBar isLoggedIn={ this.state.isLoggedIn }/>
         <div className="container">
           <main role="main">
             { this.renderSignupForm() }

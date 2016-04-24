@@ -6,13 +6,13 @@ var Dispatcher = {
       data: {email: email, password: password}
     }).done(function(response) {
       if(response["status"] == "success") {
-        window.Store.setSession(response);
+        window.AuthStore.setSession(response);
       }
     });
   },
 
   logout() {
-    window.Store.clearSession();
+    window.AuthStore.clearSession();
   },
 
   signup(firstName, lastName, email, password) {
