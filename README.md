@@ -39,3 +39,78 @@ RocketNanny communicates with the API in 2 ways. Login and Signup are traditiona
 ### RocketNanny Mobile Apps
 
 The RocketNanny site has a mobile version that is currently under construction. These mobile apps would be native iOS and Android apps that utilize their internal contact list and SMS tools.
+
+## Ubuntu install
+
+1) Install Erlang/Elixir
+```sh
+sudo apt-get update
+sudo apt-get install build-essential
+sudo apt-get install erlang-asn1 erlang-base erlang-crypto erlang-inets erlang-mnesia erlang-public-key erlang-runtime-tools erlang-solutions erlang-ssl erlang-syntax-tools
+wget https://packages.erlang-solutions.com/erlang-solutions_1.0_all.deb && sudo dpkg -i erlang-solutions_1.0_all.deb
+sudo apt-get install esl-erlang
+sudo apt-get install elixir
+sudo apt-get install esl-erlang
+```
+2) Install hex packages
+```sh
+mix deps.get
+mix deps.compile exrm
+```
+3) Install gems
+```sh
+curl -sSL https://get.rvm.io | bash -s stable
+source /etc/profile.d/rvm.sh
+rvm install ruby-2.3
+gem install bundler
+bundle install
+```
+4) Install npm packages
+```sh
+sudo apt-get install npm
+npm install -g npm@3.5.2
+npm install
+sudo node_modules/brunch/bin/brunch build --production
+```
+
+
+## DigitalOcean Elixir Starter install
+1)Upgrade elixir packages
+``` sh
+sudo apt-get upgrade elixir
+sudo apt-get install erlang-asn1 erlang-base erlang-crypto erlang-inets erlang-mnesia erlang-public-key erlang-runtime-tools erlang-solutions erlang-ssl erlang-syntax-tools erlang-dev
+sudo apt-get update
+sudo apt-get install erlang
+sugo apt-get install git
+```
+2) Install gems
+```sh
+curl -sSL https://get.rvm.io | bash -s stable
+source /etc/profile.d/rvm.sh
+rvm install ruby-2.3
+gem install sass
+bundle install
+```
+3) Upgrade npm and node
+``` sh
+sudo npm cache clean -f
+sudo npm install -g n
+sudo n stable
+sudo ln -sf /usr/local/n/versions/node/<VERSION>/bin/node /usr/bin/node 
+sudo npm install -g npm
+sudo npm install -g npm
+```
+4) Create database credentials
+``` sh
+sudo -u postgres psql
+```
+``` postgres
+CREATE USER rocket_nanny WITH PASSWORD 'password';
+CREATE DATABASE rocket_nanny;
+GRANT ALL PRIVILEGES ON DATABASE rocket_nanny to rocket_nanny;
+```
+5) Create a release
+``` sh
+sudo env MIX_ENV=prod mix phoenix.digest
+sudo env MIX_ENV=prod mix release
+```
