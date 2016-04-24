@@ -4,6 +4,7 @@ var SignupForm = require("../forms/signup-form");
 var HomePage = React.createClass({
   propTypes: {
     isLoggedIn: React.PropTypes.bool.isRequired,
+    onSignup: React.PropTypes.func.isRequired,
     onLogout: React.PropTypes.func.isRequired
   },
 

@@ -67,7 +67,7 @@ var Router = React.createClass({
   render() {
     switch (this.props.location[0])  {
     case '':
-      return(<HomePage isLoggedIn={ this.isLoggedIn() } onLogout={ this.clearSession }/>);
+      return(<HomePage isLoggedIn={ this.isLoggedIn() } onLogout={ this.clearSession } onSignup={ this.handleSignup }/>);
     case "app":
       return(<DashboardPage isLoggedIn={ this.isLoggedIn() } onLogout={ this.clearSession }/>);
     case "login":

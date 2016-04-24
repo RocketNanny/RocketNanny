@@ -34,27 +34,27 @@ var SignupForm = React.createClass({
       <div>
         <h1>Signup Form</h1>
         <form>
-          <fieldset class="form-group">
-            <label for="formGroupInput">First Name  </label>
-            <input type="text" class="form-control" id="formGroupInput" placeholder="First Name"/>
+          <fieldset className="form-group">
+            <label htmlFor="formGroupInput">First Name  </label>
+            <input type="text" className="form-control" id="formGroupInput" placeholder="First Name"/>
           </fieldset>
-          <fieldset class="form-group">
-            <label for="formGroupInput2">Last Name  </label>
-            <input type="text" class="form-control" id="formGroupInput2" placeholder="Last Name"/>
+          <fieldset className="form-group">
+            <label htmlFor="formGroupInput2">Last Name  </label>
+            <input type="text" className="form-control" id="formGroupInput2" placeholder="Last Name"/>
           </fieldset>
-          <fieldset class="form-group">
-            <label for="InputEmail">Email address  </label>
-            <input type="email" class="form-control" id="InputEmail" placeholder="Enter email"/>
+          <fieldset className="form-group">
+            <label htmlFor="InputEmail">Email address  </label>
+            <input type="email" className="form-control" id="InputEmail" placeholder="Enter email"/>
           </fieldset>
-          <fieldset class="form-group">
-            <label for="InputPassword">Password  </label>
-            <input type="password" class="form-control" id="InputPassword" placeholder="Password"/>
+          <fieldset className="form-group">
+            <label htmlFor="InputPassword">Password  </label>
+            <input type="password" className="form-control" id="InputPassword" placeholder="Password"/>
           </fieldset>
-          <fieldset class="form-group">
-            <label for="InputPassword2">Confirm Password  </label>
-            <input type="password" class="form-control" id="InputPassword2" placeholder="ConfirmPassword"/>
+          <fieldset className="form-group">
+            <label htmlFor="InputPassword2">Confirm Password  </label>
+            <input type="password" className="form-control" id="InputPassword2" placeholder="ConfirmPassword"/>
           </fieldset>
-          <button type="submit" class="btn btn-primary" onClick={ this.signup }>Submit</button>
+          <button type="submit" className="btn btn-primary" onClick={ this.signup }>Submit</button>
         </form>
       </div>
     );
