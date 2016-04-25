@@ -48,24 +48,24 @@ var SignupForm = React.createClass({
         <h1>Signup Form</h1>
         <TextField label="First Name" type="text" errors={ this.parseErrors("first_name") } value={ this.state.firstName } onChange={ this.handleFieldChange.bind(this, "firstName") }/>
         <fieldset className="form-group">
-          <label htmlFor="formGroupInput">First Name  </label>
-          <input type="text" className="form-control" id="formGroupInput" placeholder="First Name"/>
+          <label htmlFor="signupFirstName">First Name</label>
+          <input type="text" className="form-control" id="signupFirstName" placeholder="First Name" onChange={ this.handleFieldChange.bind(this, "firstName")/>
         </fieldset>
         <fieldset className="form-group">
-          <label htmlFor="formGroupInput2">Last Name  </label>
-          <input type="text" className="form-control" id="formGroupInput2" placeholder="Last Name"/>
+          <label htmlFor="signupLastName">Last Name</label>
+          <input type="text" className="form-control" id="singupLastName" placeholder="Last Name" onChange={ this.handleFieldChange.bind(this, "lastName")/>
         </fieldset>
         <fieldset className="form-group">
-          <label htmlFor="InputEmail">Email address  </label>
-          <input type="email" className="form-control" id="InputEmail" placeholder="Enter email"/>
+          <label htmlFor="InputEmail">Email address</label>
+          <input type="email" className="form-control" id="InputEmail" placeholder="Enter email" onChange={ this.handleFieldChange.bind(this, "email")/>
         </fieldset>
         <fieldset className="form-group">
-          <label htmlFor="InputPassword">Password  </label>
-          <input type="password" className="form-control" id="InputPassword" placeholder="Password"/>
+          <label htmlFor="InputPassword">Password</label>
+          <input type="password" className="form-control" id="InputPassword" placeholder="Password" onChange={ this.handleFieldChange.bind(this, "password")/>
         </fieldset>
         <fieldset className="form-group">
-          <label htmlFor="InputPassword2">Confirm Password  </label>
-          <input type="password" className="form-control" id="InputPassword2" placeholder="ConfirmPassword"/>
+          <label htmlFor="InputPassword2">Confirm Password </label>
+          <input type="password" className="form-control" id="InputPassword2" placeholder="ConfirmPassword" onChange={ this.handleFieldChange.bind(this, "confirmPassword")/>
         </fieldset>
         <button type="submit" className="btn btn-primary" onClick={ this.signup }>Submit</button>
       </form>
