@@ -30,7 +30,7 @@ var Router = React.createClass({
   },
 
   render() {
-    var isLoggedIn = true;
+    var isLoggedIn = this.state.isLoggedIn;
 
     switch (this.props.location[0])  {
     case '':
