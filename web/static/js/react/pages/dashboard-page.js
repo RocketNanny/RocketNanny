@@ -10,7 +10,12 @@ var DashboardPage = React.createClass({
         <NavBar/>
         <div className="container">
           <main role="main">
-            Dashboard placeholder
+          <button>
+            <i className="fa fa-plus"></i>
+              <div id="button-label">
+              Create a new Job
+              </div>
+              </button>
           </main>
         </div>
       </div>
